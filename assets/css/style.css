@@ -31,3 +31,14 @@ header button {
 h2 {
     font-size: 1.5rem;
 }
+
+.result-box {
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 8px 0 rgba(255, 132, 0, 0.8);
+}
+
+.result-box p {
+    font-weight: bold;
+}
