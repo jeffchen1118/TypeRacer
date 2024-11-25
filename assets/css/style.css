@@ -37,6 +37,7 @@ h2 {
     padding: 1rem;
     margin-bottom: 1.25rem;
     box-shadow: 0 4px 8px 0 rgba(255, 132, 0, 0.8);
+    max-height: fit-content;
 }
 
 .result-box p {
