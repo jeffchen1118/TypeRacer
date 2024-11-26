@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSampleText() {
         const difficulty = document.getElementById('difficultySelect').value;
         const sampleText = texts[difficulty][Math.floor(Math.random() * texts[difficulty].length)];
-        document.getElementById('sampleText').innerText = sampleText;
+        const sampleTextElement = document.getElementById('sampleText');
+        sampleTextElement.innerHTML = sampleText.split(' ').map(word => `<span>${word}</span>`).join(' ');
     }
 
     function startTest() {
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('typingInput').value = '';
         document.getElementById('typingInput').focus();
         testStarted = true;
+        //updateSampleText();
     }
 
     function stopTest() {
@@ -62,13 +64,42 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!testStarted) {
             startTest();
         }
+        const typedText = event.target.value.trim();
+        const sampleText = document.getElementById('sampleText').innerText.trim();
+        const typedWords = typedText.split(' ');
+        const sampleWords = sampleText.split(' ');
+        
+        //follow the sample text and highlight the words based on the typed words
+        sampleWords.forEach((word, index) => {
+            const wordElement = document.getElementById('sampleText').children[index];
+            if (typedWords[index] === word) {
+                wordElement.style.color = 'blue';
+            } else if (typedWords[index] !== undefined && typedWords[index] !== '') {
+                wordElement.style.color = 'red';
+            } else {
+                wordElement.style.color = 'black';
+            }
+        });
+
         if (event.key === 'Enter') {
             stopTest();
         }
     }
 
-    document.getElementById('difficultySelect').addEventListener('change', updateSampleText);
+    function newGame() {
+        document.getElementById('startButton').disabled = false;
+        document.getElementById('stopButton').disabled = true;
+        document.getElementById('typingInput').value = '';
+        document.getElementById('resultTime').innerText = '0s';
+        document.getElementById('resultWpm').innerText = '0';
+        document.getElementById('resultLevel').innerText = document.getElementById('difficultySelect').value.charAt(0).toUpperCase() + document.getElementById('difficultySelect').value.slice(1);
+        updateSampleText();
+        testStarted = false;
+    }
+
+    document.getElementById('difficultySelect').addEventListener('change', newGame);
     document.getElementById('startButton').addEventListener('click', startTest);
     document.getElementById('stopButton').addEventListener('click', stopTest);
+    document.getElementById('newGameButton').addEventListener('click', newGame);
     document.getElementById('typingInput').addEventListener('keydown', handleTypingInput);
 });
