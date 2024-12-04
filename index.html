@@ -20,7 +20,7 @@
     <header class="text-white text-center py-3">
         <div class="container">
             <h1>TypeRacer</h1>
-            <button id="instructionButton" class="btn btn-light mt-2">Instructions</button>
+            <button id="instructionButton" class="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#instructionModal">Instructions</button>
         </div>
     </header>
      
@@ -57,6 +57,35 @@
                 <p>Level: <span id="resultLevel">Easy</span></p>
                 <p>Time: <span id="resultTime">0s</span></p>
                 <p>WPM: <span id="resultWpm">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="instructionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="instructionModalLabel">Instructions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Welcome to the TypeRacer typing test!<br><br>
+                       Here's how it works:<br>
+                       <br>
+                          1. Select the difficulty level from the dropdown menu.<br>    
+                          2. Click the "Start" button to begin the test.<br>
+                          3. Type the text shown in the text area as fast and accurately as you can.<br>
+                          4. Press the "Enter" key to stop the test.<br>
+                          5. Your results will be displayed in the "Results" section.<br>
+                          6. Click the "New Game" button to start a new test.<br>
+                    
+                    </p>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
